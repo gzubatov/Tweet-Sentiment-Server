@@ -1,0 +1,23 @@
+{
+	"name": "final-project-server",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"start": "node src/index.js",
+		"dev": "env-cmd -f ./config/dev.env nodemon src/index.js"
+	},
+	"dependencies": {
+		"cookie-parser": "~1.4.4",
+		"debug": "~2.6.9",
+		"express": "~4.16.1",
+		"http-errors": "~1.6.3",
+		"jade": "~1.11.0",
+		"morgan": "~1.9.1",
+		"sentiment": "^5.0.2",
+		"twitter": "^1.7.1"
+	},
+	"devDependencies": {
+		"env-cmd": "^10.1.0",
+		"nodemon": "^2.0.6"
+	}
+}

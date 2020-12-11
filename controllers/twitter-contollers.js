@@ -44,7 +44,7 @@ const getTweet = async (req, res, next) => {
 	const username = req.params.username;
 	const url = `https://publish.twitter.com/oembed?url=https%3A%2F%2Ftwitter.com%2F${username}%2Fstatus%2F${tweetID}&omit_script=true`;
 	https.get(url, (response) => {
-		var data = '';
+		let data = '';
 
 		//another chunk of data has been received, so append it to `str`
 		response.on('data', function(chunk) {
@@ -54,7 +54,8 @@ const getTweet = async (req, res, next) => {
 		//the whole response has been received, so we just print it out here
 		response.on('end', function() {
 			console.log(JSON.parse(data));
-			res.json(JSON.parse(data));
+			const embedData = JSON.parse(data);
+			res.json(embedData);
 		});
 	});
 };

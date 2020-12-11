@@ -1,4 +1,4 @@
-const http = require('http');
+const https = require('https');
 const Twitter = require('twitter');
 const getSentiment = require('../utils/sentiment');
 
@@ -39,6 +39,27 @@ const searchTweets = async (req, res, next) => {
 	}
 };
 
+const getTweet = async (req, res, next) => {
+	const tweetID = req.params.id;
+	const username = req.params.username;
+	const url = `https://publish.twitter.com/oembed?url=https%3A%2F%2Ftwitter.com%2F${username}%2Fstatus%2F${tweetID}&omit_script=true`;
+	https.get(url, (response) => {
+		var data = '';
+
+		//another chunk of data has been received, so append it to `str`
+		response.on('data', function(chunk) {
+			data += chunk;
+		});
+
+		//the whole response has been received, so we just print it out here
+		response.on('end', function() {
+			console.log(JSON.parse(data));
+			res.json(JSON.parse(data));
+		});
+	});
+};
+
 module.exports = {
-	searchTweets
+	searchTweets,
+	getTweet
 };

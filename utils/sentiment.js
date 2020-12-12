@@ -1,6 +1,7 @@
 var Sentiment = require('sentiment');
 var sentiment = new Sentiment();
 
+// This alters and/or adds in additional sentiment scores
 const options = {
 	extras : {
 		disservice : -1,
@@ -15,6 +16,7 @@ const options = {
 	}
 };
 
+// This function parses the text and returns a sentiment score object
 const getSentimentScore = (text) => {
 	return sentiment.analyze(text, options);
 };
